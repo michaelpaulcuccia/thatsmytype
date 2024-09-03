@@ -1,19 +1,11 @@
 "use client";
 import React from "react";
+import PizzaMenuComponent from "../../components/PizzaMenuComponent";
 import styled from "styled-components";
+import { PizzaMenu } from "../../constants";
+import NewPizzaForm from "../../components/NewPizzaForm";
 
 export default function page() {
-  type MenuItem = {
-    name: string;
-    price: number;
-  };
-
-  const menu: MenuItem[] = [
-    { name: "Margherita", price: 14 },
-    { name: "Meat Lovers", price: 21 },
-    { name: "Veggie", price: 17 },
-  ];
-
   let cashInRegister: number = 100;
   let orderNumber: number = 0;
   const orderQueue = [];
@@ -38,12 +30,12 @@ export default function page() {
       <ItemBox>
         <h2 style={{ marginBottom: "6px" }}>Menu</h2>
         <div>
-          {menu.map((item, i) => (
-            <li key={i} style={{ marginBottom: "6px" }}>
-              {item.name}: ${item.price}
-            </li>
+          {PizzaMenu.map((item, i) => (
+            <PizzaMenuComponent key={i} item={item} />
           ))}
         </div>
+        <br />
+        <NewPizzaForm />
       </ItemBox>
       <ItemBox>
         <div>Register Total: ${cashInRegister}</div>
