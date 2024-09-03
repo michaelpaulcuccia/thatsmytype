@@ -1,9 +1,7 @@
 "use client";
 import React from "react";
-import PizzaMenuComponent from "../../components/PizzaMenuComponent";
 import styled from "styled-components";
-import { PizzaMenu } from "../../constants";
-import NewPizzaForm from "../../components/NewPizzaForm";
+import PizzaMenuView from "../../components/PizzaMenuView";
 
 export default function page() {
   let cashInRegister: number = 100;
@@ -28,14 +26,7 @@ export default function page() {
   return (
     <Wrapper>
       <ItemBox>
-        <h2 style={{ marginBottom: "6px" }}>Menu</h2>
-        <div>
-          {PizzaMenu.map((item, i) => (
-            <PizzaMenuComponent key={i} item={item} />
-          ))}
-        </div>
-        <br />
-        <NewPizzaForm />
+        <PizzaMenuView />
       </ItemBox>
       <ItemBox>
         <div>Register Total: ${cashInRegister}</div>

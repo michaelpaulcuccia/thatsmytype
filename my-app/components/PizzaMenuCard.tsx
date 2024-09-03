@@ -6,7 +6,7 @@ interface MenuProps {
   item: PizzaMenuItem;
 }
 
-const PizzaMenuComponent: React.FC<MenuProps> = ({ item }) => {
+const PizzaMenuCard: React.FC<MenuProps> = ({ item }) => {
   useEffect(() => {}, [item]);
 
   return (
@@ -27,4 +27,4 @@ const PizzaMenuComponent: React.FC<MenuProps> = ({ item }) => {
   );
 };
 
-export default PizzaMenuComponent;
+export default PizzaMenuCard;
