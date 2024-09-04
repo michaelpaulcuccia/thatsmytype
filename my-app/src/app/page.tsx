@@ -1,13 +1,13 @@
 "use client";
 import React from "react";
+import { useRegister } from "../../context/RegisterContext";
 import styled from "styled-components";
 import PizzaMenuView from "../../components/PizzaMenuView";
 import PizzaOrderView from "../../components/PizzaOrderView";
 
 export default function page() {
-  let cashInRegister: number = 100;
+  const { register } = useRegister();
   let orderNumber: number = 0;
-  const orderQueue = [];
 
   const Wrapper = styled.div`
     display: flex;
@@ -30,7 +30,7 @@ export default function page() {
         <PizzaMenuView />
       </ItemBox>
       <ItemBox>
-        <div>Register Total: ${cashInRegister}</div>
+        <div>Register Total: ${register.amount}</div>
       </ItemBox>
       <ItemBox>
         Serving Order Number:{" "}
