@@ -2,6 +2,7 @@
 import React from "react";
 import styled from "styled-components";
 import PizzaMenuView from "../../components/PizzaMenuView";
+import PizzaOrderView from "../../components/PizzaOrderView";
 
 export default function page() {
   let cashInRegister: number = 100;
@@ -34,6 +35,9 @@ export default function page() {
       <ItemBox>
         Serving Order Number:{" "}
         {orderNumber === 0 ? "no orders yet" : orderNumber}
+      </ItemBox>
+      <ItemBox>
+        <PizzaOrderView />
       </ItemBox>
     </Wrapper>
   );

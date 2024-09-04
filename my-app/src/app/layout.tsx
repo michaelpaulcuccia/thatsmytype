@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "@progress/kendo-theme-default/dist/all.css";
+import { MenuContextProvider } from "../../context/MenuContext";
 import StyledComponentsRegistry from "../../lib/registry";
 import "./globals.css";
 
@@ -20,10 +21,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <StyledComponentsRegistry>
-        <body className={roboto.className}>{children}</body>
-      </StyledComponentsRegistry>
-    </html>
+    <MenuContextProvider>
+      <html lang="en">
+        <StyledComponentsRegistry>
+          <body className={roboto.className}>{children}</body>
+        </StyledComponentsRegistry>
+      </html>
+    </MenuContextProvider>
   );
 }
