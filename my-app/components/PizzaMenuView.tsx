@@ -15,6 +15,7 @@ import PizzaMenuCard from "./PizzaMenuCard";
 export default function PizzaMenuView() {
   const { pizzaMenu, addPizza } = usePizzaMenu();
   const [formKey, setFormKey] = useState(1);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const resetForm = () => {
     setFormKey(formKey + 1);
@@ -27,8 +28,11 @@ export default function PizzaMenuView() {
     };
 
     addPizza(newPizza);
-
     resetForm();
+  };
+
+  const handleAdmin = () => {
+    setIsAdmin(!isAdmin);
   };
 
   useEffect(() => {}, [pizzaMenu]);
@@ -39,37 +43,50 @@ export default function PizzaMenuView() {
         <PizzaMenuCard key={i} item={item} />
       ))}
       <br />
-      <h2>Add a new pizza</h2>
-
-      <Form
-        onSubmit={handleSubmit}
-        key={formKey}
-        render={(formRenderProps: FormRenderProps) => (
-          <FormElement style={{ maxWidth: 650 }}>
-            <fieldset className={"k-form-fieldset"}>
-              <FieldWrapper>
+      <button onClick={handleAdmin}>
+        {!isAdmin ? "click if admin" : "close"}
+      </button>
+      {isAdmin && (
+        <>
+          <br />
+          <h2>Add a new pizza</h2>
+          <Form
+            onSubmit={handleSubmit}
+            key={formKey}
+            render={(formRenderProps: FormRenderProps) => (
+              <FormElement style={{ maxWidth: 650 }}>
+                <fieldset className={"k-form-fieldset"}>
+                  <FieldWrapper>
+                    <div>
+                      <Field
+                        name={"name"}
+                        component={Input}
+                        label={"Pizza Name"}
+                      />
+                    </div>
+                  </FieldWrapper>
+                  <FieldWrapper>
+                    <div>
+                      <Field
+                        name={"price"}
+                        component={Input}
+                        label={"Price"}
+                        type="number"
+                      />
+                    </div>
+                  </FieldWrapper>
+                </fieldset>
+                <br />
                 <div>
-                  <Field name={"name"} component={Input} label={"Pizza Name"} />
+                  <Button disabled={!formRenderProps.allowSubmit}>
+                    Submit
+                  </Button>
                 </div>
-              </FieldWrapper>
-              <FieldWrapper>
-                <div>
-                  <Field
-                    name={"price"}
-                    component={Input}
-                    label={"Price"}
-                    type="number"
-                  />
-                </div>
-              </FieldWrapper>
-            </fieldset>
-            <br />
-            <div>
-              <Button disabled={!formRenderProps.allowSubmit}>Submit</Button>
-            </div>
-          </FormElement>
-        )}
-      />
+              </FormElement>
+            )}
+          />
+        </>
+      )}
     </>
   );
 }
