@@ -2,12 +2,12 @@
 import React from "react";
 import { useRegister } from "../../context/RegisterContext";
 import styled from "styled-components";
-import PizzaMenuView from "../../components/PizzaMenuView";
-import PizzaOrderView from "../../components/PizzaOrderView";
+import AdminView from "../../components/AdminView";
+import PlaceYourOrderView from "../../components/PlaceYourOrderView";
+import PreparingOrderView from "../../components/PreparingOrderView";
 
 export default function page() {
   const { register } = useRegister();
-  let orderNumber: number = 0;
 
   const Wrapper = styled.div`
     display: flex;
@@ -27,17 +27,18 @@ export default function page() {
   return (
     <Wrapper>
       <ItemBox>
-        <PizzaMenuView />
+        <AdminView />
       </ItemBox>
       <ItemBox>
+        <h2>In-Line Register View</h2>
+        <br />
         <div>Register Total: ${register.amount}</div>
       </ItemBox>
       <ItemBox>
-        Serving Order Number:{" "}
-        {orderNumber === 0 ? "no orders yet" : orderNumber}
+        <PlaceYourOrderView />
       </ItemBox>
       <ItemBox>
-        <PizzaOrderView />
+        <PreparingOrderView />
       </ItemBox>
     </Wrapper>
   );

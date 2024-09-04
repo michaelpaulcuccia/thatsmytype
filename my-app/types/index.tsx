@@ -6,3 +6,7 @@ export type PizzaMenuItem = {
 export type Register = {
   amount: number;
 };
+
+export type Order = {
+  orderNum: number;
+};

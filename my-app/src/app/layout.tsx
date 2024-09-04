@@ -3,6 +3,7 @@ import { Roboto } from "next/font/google";
 import "@progress/kendo-theme-default/dist/all.css";
 import { MenuContextProvider } from "../../context/MenuContext";
 import { RegisterContextProvider } from "../../context/RegisterContext";
+import { OrderNumberContextProvider } from "../../context/OrderNumberContext";
 import StyledComponentsRegistry from "../../lib/registry";
 import "./globals.css";
 
@@ -24,11 +25,13 @@ export default function RootLayout({
   return (
     <MenuContextProvider>
       <RegisterContextProvider>
-        <html lang="en">
-          <StyledComponentsRegistry>
-            <body className={roboto.className}>{children}</body>
-          </StyledComponentsRegistry>
-        </html>
+        <OrderNumberContextProvider>
+          <html lang="en">
+            <StyledComponentsRegistry>
+              <body className={roboto.className}>{children}</body>
+            </StyledComponentsRegistry>
+          </html>
+        </OrderNumberContextProvider>
       </RegisterContextProvider>
     </MenuContextProvider>
   );

@@ -12,7 +12,7 @@ import { Button } from "@progress/kendo-react-buttons";
 import { PizzaMenuItem } from "../types";
 import PizzaMenuCard from "./PizzaMenuCard";
 
-export default function PizzaMenuView() {
+export default function AdminView() {
   const { pizzaMenu, addPizza } = usePizzaMenu();
   const [formKey, setFormKey] = useState(1);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -39,15 +39,17 @@ export default function PizzaMenuView() {
 
   return (
     <>
-      {pizzaMenu.map((item, i) => (
-        <PizzaMenuCard key={i} item={item} />
-      ))}
+      <h2>Admin View</h2>
       <br />
       <button onClick={handleAdmin}>
         {!isAdmin ? "click if admin" : "close"}
       </button>
       {isAdmin && (
         <>
+          {pizzaMenu.map((item, i) => (
+            <PizzaMenuCard key={i} item={item} />
+          ))}
+          <br />
           <br />
           <h2>Add a new pizza</h2>
           <Form
